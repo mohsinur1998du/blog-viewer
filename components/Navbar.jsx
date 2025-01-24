@@ -8,9 +8,12 @@ import {
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function Navbar() {
-  const { getUser } = getKindeServerSession();
+  const { getUser, isAuthenticated } = getKindeServerSession();
   const user = await getUser();
-  
+
+  // if (!isAuthenticated) {
+  // }
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -24,10 +27,23 @@ export default async function Navbar() {
               <Link href="/profile">Profile</Link>
             </li>
             <li>
-              {user ? (
+              {(await isAuthenticated()) ? (
                 <LogoutLink className="auth-btn">Logout</LogoutLink>
               ) : (
-                <LoginLink className="auth-btn">Login</LoginLink>
+                <>
+                  <LoginLink
+                    postLoginRedirectURL="/profile"
+                    className="auth-btn"
+                  >
+                    Login
+                  </LoginLink>
+                  <RegisterLink
+                    postLoginRedirectURL="/profile"
+                    className="auth-btn"
+                  >
+                    Register
+                  </RegisterLink>
+                </>
               )}
             </li>
           </ul>
