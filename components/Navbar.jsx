@@ -9,54 +9,46 @@ export default async function Navbar() {
   const user = await getUser();
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-md z-50">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+    <nav className="bg-white shadow-md w-full">
+      <div className="container mx-auto px-4 flex justify-between items-center h-16">
         <Link href="/" className="flex items-center space-x-2">
-          <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-lg">BP</span>
+          <div className="bg-gradient-to-r from-blue-500 to-purple-600 w-8 h-8 rounded-full flex items-center justify-center">
+            <span className="text-white text-sm font-bold">BP</span>
           </div>
-          <h4 className="text-xl font-semibold text-gray-800 hidden md:block">
-            Blog Post
-          </h4>
+          <span className="text-xl font-semibold text-gray-800">Blog Post</span>
         </Link>
 
-        <div className="flex items-center space-x-4">
-          <ul className="flex space-x-4 items-center">
-            <li>
-              <Link
-                href="/"
-                className="text-gray-600 hover:text-blue-600 transition-colors flex items-center space-x-1"
-              >
-                <Home size={20} />
-                <span className="hidden md:inline">Home</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/profile"
-                className="text-gray-600 hover:text-blue-600 transition-colors flex items-center space-x-1"
-              >
-                <User size={20} />
-                <span className="hidden md:inline">Profile</span>
-              </Link>
-            </li>
-            <li>
-              {(await isAuthenticated()) ? (
-                <LogoutLink className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600 transition-colors flex items-center space-x-1">
-                  <LogOut size={20} />
-                  <span className="hidden md:inline">Logout</span>
-                </LogoutLink>
-              ) : (
-                <LoginLink
-                  postLoginRedirectURL="/profile"
-                  className="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600 transition-colors flex items-center space-x-1"
-                >
-                  <LogIn size={20} />
-                  <span className="hidden md:inline">Login</span>
-                </LoginLink>
-              )}
-            </li>
-          </ul>
+        <div className="flex items-center space-x-6">
+          <Link
+            href="/"
+            className="flex items-center space-x-1 text-gray-600 hover:text-blue-600"
+          >
+            <Home size={20} />
+            <span>Home</span>
+          </Link>
+
+          <Link
+            href="/profile"
+            className="flex items-center space-x-1 text-gray-600 hover:text-blue-600"
+          >
+            <User size={20} />
+            <span>Profile</span>
+          </Link>
+
+          {(await isAuthenticated()) ? (
+            <LogoutLink className="flex items-center space-x-1 bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600">
+              <LogOut size={20} />
+              <span>Logout</span>
+            </LogoutLink>
+          ) : (
+            <LoginLink
+              postLoginRedirectURL="/profile"
+              className="flex items-center space-x-1 bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600"
+            >
+              <LogIn size={20} />
+              <span>Login</span>
+            </LoginLink>
+          )}
         </div>
       </div>
     </nav>
