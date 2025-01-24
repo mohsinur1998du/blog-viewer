@@ -37,12 +37,6 @@ export default async function Navbar() {
                   >
                     Login
                   </LoginLink>
-                  <RegisterLink
-                    postLoginRedirectURL="/profile"
-                    className="auth-btn"
-                  >
-                    Register
-                  </RegisterLink>
                 </>
               )}
             </li>
