@@ -33,7 +33,7 @@ export default async function Navbar() {
                 <>
                   <LoginLink
                     postLoginRedirectURL="/profile"
-                    className="auth-btn"
+                    className="auth-btn ml-2"
                   >
                     Login
                   </LoginLink>
